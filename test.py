@@ -1,10 +1,11 @@
 #!flask/bin/python
 import os
 import unittest
+from datetime import datetime, timedelta
 
 from config import basedir
 from app import app, db
-from app.models import User
+from app.models import User, Post
 
 class TestCase(unittest.TestCase):
   def setUp(self):
@@ -74,7 +75,7 @@ class TestCase(unittest.TestCase):
     p1 = Post(body = 'post from john', author = u1, timestamp = utcnow + timedelta(seconds = 1))
     p2 = Post(body = 'post from susan', author = u2, timestamp = utcnow + timedelta(seconds = 2))
     p3 = Post(body = 'post from mary', author = u3, timestamp = utcnow + timedelta(seconds = 3))
-    p1 = Post(body = 'post from david', author = u4, timestamp = utcnow + timedelta(seconds = 4))
+    p4 = Post(body = 'post from david', author = u4, timestamp = utcnow + timedelta(seconds = 4))
     db.session.add(p1)
     db.session.add(p2)
     db.session.add(p3)
@@ -94,9 +95,9 @@ class TestCase(unittest.TestCase):
     db.session.add(u4)
     db.session.commit()
     f1 = u1.followed_posts().all()
-    f2 = u1.followed_posts().all()
-    f3 = u1.followed_posts().all()
-    f4 = u1.followed_posts().all()
+    f2 = u2.followed_posts().all()
+    f3 = u3.followed_posts().all()
+    f4 = u4.followed_posts().all()
     assert len(f1) == 3
     assert len(f2) == 2
     assert len(f3) == 2
