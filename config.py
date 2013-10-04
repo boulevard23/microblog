@@ -28,3 +28,9 @@ ADMINS = ['boulevard023@gmail.com']
 
 # pagination
 POSTS_PER_PAGE = 3
+
+# languages
+LANGUAGES = {
+    'en': 'English',
+    'zh': 'Chinese'
+    }
